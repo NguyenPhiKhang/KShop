@@ -2,7 +2,7 @@
 
 namespace KShop.Data.Inflastructure
 {
-    internal class Disposable : IDisposable
+    public class Disposable : IDisposable
     {
         private bool isDisposed;
 

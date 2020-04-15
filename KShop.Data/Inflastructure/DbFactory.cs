@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KShop.Data.Inflastructure
 {
-    class DbFactory: Disposable, IDbFactory
+    public class DbFactory: Disposable, IDbFactory
     {
         KShopDbContext dbContext;
         public KShopDbContext Init()
