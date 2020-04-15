@@ -51,6 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Inflastructure\DbFactory.cs" />
+    <Compile Include="Inflastructure\Disposable.cs" />
+    <Compile Include="Inflastructure\IDbFactory.cs" />
+    <Compile Include="Inflastructure\IRepository.cs" />
+    <Compile Include="Inflastructure\IUnitOfWork.cs" />
+    <Compile Include="Inflastructure\RepositoryBase.cs" />
+    <Compile Include="Inflastructure\UnitOfWork.cs" />
+    <Compile Include="KShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +70,13 @@
       <Project>{42cbdae6-3fd9-4bdc-91cb-1b9dda51634b}</Project>
       <Name>KShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KShop.Model\KShop.Model.csproj">
+      <Project>{8dfc1772-16cc-4669-b2b2-5e1284d0656c}</Project>
+      <Name>KShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
