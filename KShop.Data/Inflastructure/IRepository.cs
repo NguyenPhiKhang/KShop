@@ -20,7 +20,7 @@ namespace KShop.Data.Inflastructure
         //Delete multi records
         void DeleteMulti(Expression<Func<T, bool>> where);
 
-        // Get an entity by int id
+        // Get an entity by int id 
         T GetSingleById(int id);
 
         T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
