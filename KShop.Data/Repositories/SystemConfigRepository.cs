@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KShop.Data.Repositories
 {
-    public interface ISystemConfigRepository
+    public interface ISystemConfigRepository : IRepository<SystemConfig>
     {
     }
 

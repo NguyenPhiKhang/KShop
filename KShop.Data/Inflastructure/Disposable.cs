@@ -19,7 +19,7 @@ namespace KShop.Data.Inflastructure
 
         private void Dispose(bool disposing)
         {
-            if (!isDisposed & disposing)
+            if (!isDisposed && disposing)
             {
                 DisposeCore();
             }

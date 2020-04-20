@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KShop.Data.Repositories
 {
-    public interface IPageRepository
+    public interface IPageRepository : IRepository<Page>
     {
     }
 
