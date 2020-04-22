@@ -13,7 +13,7 @@ namespace KShop.Web.Api
     {
         IPostCategoryService _postCategoryService;
 
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService): base(errorService)
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
         {
             this._postCategoryService = postCategoryService;
         }
@@ -58,7 +58,7 @@ namespace KShop.Web.Api
                 }
                 return response;
             });
-        } 
+        }
 
         public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
         {
@@ -86,19 +86,9 @@ namespace KShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                HttpResponseMessage response = null;
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(System.Net.HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listCategory = _postCategoryService.GetAll();
-                    _postCategoryService.Save();
+                var listCategory = _postCategoryService.GetAll();
+                HttpResponseMessage response = request.CreateResponse(System.Net.HttpStatusCode.OK, listCategory);
 
-                    response = request.CreateResponse(System.Net.HttpStatusCode.OK, listCategory);
-
-                }
                 return response;
             });
         }
