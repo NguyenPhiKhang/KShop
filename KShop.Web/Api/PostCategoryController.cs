@@ -1,6 +1,9 @@
-﻿using KShop.Model.Models;
+﻿using AutoMapper;
+using KShop.Model.Models;
 using KShop.Service;
 using KShop.Web.Infrastructure.Core;
+using KShop.Web.Infrastructure.Extensions;
+using KShop.Web.Models;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
@@ -18,7 +21,8 @@ namespace KShop.Web.Api
             this._postCategoryService = postCategoryService;
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -29,10 +33,13 @@ namespace KShop.Web.Api
                 }
                 else
                 {
-                    _postCategoryService.Add(postCategory);
+                    PostCategory newPostCategory = new PostCategory();
+                    newPostCategory.UpdatePostCategory(postCategoryVm);
+
+                    var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();
 
-                    response = request.CreateResponse(System.Net.HttpStatusCode.Created, postCategory);
+                    response = request.CreateResponse(System.Net.HttpStatusCode.Created, category);
 
                 }
                 return response;
@@ -60,9 +67,10 @@ namespace KShop.Web.Api
             });
         }
 
-        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
-            return CreateHttpResponse(request, () =>
+            return CreateHttpResponse(request, () => 
             {
                 HttpResponseMessage response = null;
                 if (ModelState.IsValid)
@@ -71,7 +79,9 @@ namespace KShop.Web.Api
                 }
                 else
                 {
-                    _postCategoryService.Update(postCategory);
+                    var postCategoryDb = _postCategoryService.GetById(postCategoryVm.ID);
+                    postCategoryDb.UpdatePostCategory(postCategoryVm);
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(System.Net.HttpStatusCode.OK);
@@ -87,6 +97,9 @@ namespace KShop.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 var listCategory = _postCategoryService.GetAll();
+
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
                 HttpResponseMessage response = request.CreateResponse(System.Net.HttpStatusCode.OK, listCategory);
 
                 return response;
