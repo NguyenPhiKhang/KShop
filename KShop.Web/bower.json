@@ -1,0 +1,21 @@
+{
+  "name": "ASP.NET",
+  "homepage": "https://github.com/NguyenPhiKhang/KShop",
+  "authors": [
+    "Khang Nguyễn Phi <17520616@ms.uit.edu.vn>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Scripts/plugins",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.7.9"
+  }
+}
