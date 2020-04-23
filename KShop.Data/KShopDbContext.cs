@@ -1,9 +1,10 @@
 ﻿using KShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace KShop.Data
 {
-    public class KShopDbContext : DbContext
+    public class KShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public KShopDbContext() : base("KShopConnection")
         {
@@ -33,9 +34,15 @@ namespace KShop.Data
 
         public DbSet<Error> Errors { set; get; }
 
+        public static KShopDbContext Create()
+        {
+            return new KShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId});
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
