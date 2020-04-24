@@ -8,17 +8,19 @@
 <html ng-app="myModule">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>index</title>
+    <title>Index</title>
     <script src="~/Scripts/plugins/angular/angular.js"></script>
     <script src="~/Scripts/spa/app.js"></script>
 </head>
 <body>
-        <div ng-controller="schoolController">
-            <input type="number" ng-model="num" /> Value texbox: {{num}}
-            <button ng-click="checkNumber()">Check Number</button>
+    <div ng-controller="schoolController">
+        <div k-shop-directive></div>
+        <input type="number" ng-model="num" /> Value of textbox: {{num}}
+        <button ng-click="checkNumber()">Check number</button>
 
-            <br />
-            {{message}}
-        </div>
+        <br />
+        {{message}}
+    </div>
+
 </body>
 </html>
