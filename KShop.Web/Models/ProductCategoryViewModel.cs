@@ -23,7 +23,7 @@ namespace KShop.Web.Models
 
         public virtual IEnumerable<PostViewModel> Posts { set; get; }
 
-        public DateTime? CreatedDate { set; get; }
+        public DateTime? CreateDate { set; get; }
 
 
         public string CreatedBy { set; get; }

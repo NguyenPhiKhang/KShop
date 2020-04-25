@@ -35,7 +35,7 @@ namespace KShop.Web.Models
 
         public int? ViewCount { set; get; }
 
-        public DateTime? CreatedDate { set; get; }
+        public DateTime? CreateDate { set; get; }
 
         public string CreatedBy { set; get; }
 
